@@ -21,11 +21,14 @@ function displayGifInfo() {
     	// prints out the queryURL
     	console.log(queryURL);
 
+
+
     	// This creates a div to hold the movie
     	for (var i = 0; i < results.length; i++) {
     		
     	
-    		var gifDIv = $("<div class= 'gif'>");
+    		var gifDiv = $("<div class='gif'>");
+
 
     			// This stores the rating
     		var p = $("<p>").text("Rating: " + results[i].rating);
@@ -35,7 +38,11 @@ function displayGifInfo() {
 
     		// Sets the attribute of the image to a property pulled from the response
     		gifImage.attr("src", results[i].images.fixed_height_still.url);
+    		// This gives the give a data element with the still url
+    		gifImage.attr("data-still", results[i].images.fixed_height_still.url);
 
+    		// This gives a data attribute for the animated image
+    		gifImage.attr("data-animate", results[i].images.fixed_height.url);
     		// This appends the rating and the gif
     		gifDiv.append(gifImage);
     		gifDiv.append(p);
@@ -66,6 +73,9 @@ function renderButtons() {
 		// This adds an attribute
 		a.attr("data-name", topics[i]);
 
+		// This creates a data state of still for each gif
+		a.attr("data-state", "still");
+
 		// Adds the button text
 		a.text(topics[i]);
 
@@ -87,8 +97,24 @@ $("#add-gif").on("click", function(event) {
 
 	// Calls the renderButton function
 	renderButtons();
-});
+}); // closes the button click event listener
 
 // Adds an event listener for the buttons
 $(document).on("click", ".giphy", displayGifInfo);
 renderButtons();
+
+// This animates the gifs when they are clicked
+$(".gif").on("click", function() {
+		console.log("click");
+	// creates a var for the state of the gif
+	var state = $(this).attr("data-state");
+
+	// This sereies of if/else statmes changes the gif to animate depending on the current state when clicked
+	if (state === "still") {
+		$(this).attr("src", $(this).data("animate"));
+		$(this).attr("data-state", "animate");
+	} else {
+		$(this).attr("src", $(this).data("still"));
+		$(this).attr("data-state", "still");
+	};
+}); // this closes the gif animater listener 
