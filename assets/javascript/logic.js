@@ -41,12 +41,15 @@ function displayGifInfo() {
     		// This gives the give a data element with the still url
     		gifImage.attr("data-still", results[i].images.fixed_height_still.url);
 
+    		// This gives the initial attribute to the image
+    		gifImage.attr("data-state", "still");
     		// This gives a data attribute for the animated image
     		gifImage.attr("data-animate", results[i].images.fixed_height.url);
     		// This appends the rating and the gif
     		gifDiv.append(gifImage);
     		gifDiv.append(p);
 
+    		gifDiv.on("click", animateFunction);
     		// This takes everyting above and puts it in the html 
     		$("#gifs").prepend(gifDiv);
 
@@ -124,5 +127,3 @@ function animateFunction() {
 		$(this).attr("data-state", "still");
 	}; //closes the else statment 
 }; // this closes the animateFunction 
-
-gifDiv.on("click", animateFunction);
