@@ -105,6 +105,9 @@ $("#add-gif").on("click", function(event) {
 
 	// Calls the renderButton function
 	renderButtons();
+
+	// Keeps the page from refreshing when the enter key is pressed
+	return false;
 }); // closes the button click event listener
 
 // Adds an event listener for the buttons
