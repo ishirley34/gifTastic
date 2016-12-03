@@ -92,6 +92,10 @@ $("#add-gif").on("click", function(event) {
 	// This grabs the input
 	var gifness = $("#gif-input").val().trim();
 
+	// This empties the gifs
+	$("#gifs").empty();
+
+
 	// Adds the input to the array
 	topics.push(gifness);
 
@@ -104,17 +108,21 @@ $(document).on("click", ".giphy", displayGifInfo);
 renderButtons();
 
 // This animates the gifs when they are clicked
-$(document).on("click", ".gif", function() {
+
+// $(gifDiv).on("click", ".gif", function() {
+
+function animateFunction() {
 	// creates a var for the state of the gif
-	console.log("click")
 	var state = $(this).attr("data-state");
 
 	// This sereies of if/else statmes changes the gif to animate depending on the current state when clicked
 	if (state === "still") {
-		$(this).attr("src", $(this).data("animate"));
+		$(this).children("img").attr("src", $(this).children("img").data("animate"));
 		$(this).attr("data-state", "animate");
 	} else {
-		$(this).attr("src", $(this).data("still"));
+		$(this).children("img").attr("src", $(this).children("img").data("still"));
 		$(this).attr("data-state", "still");
-	};
-}); // this closes the gif animater listener 
+	}; //closes the else statment 
+}; // this closes the animateFunction 
+
+gifDiv.on("click", animateFunction);
