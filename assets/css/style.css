@@ -1,3 +1,27 @@
 body {
+	background: #66a0c9;
 	margin-left: 20px;
+}
+
+.giphy {
+	background: blue;
+	color: white;
+	border-radius: 20px;
+	margin-left: 10px;
+	margin-bottom: 20px;
+}
+
+#add-gif {
+	background: blue;
+	color: white;
+	border-radius: 20px;
+}
+
+form {
+	margin-left: 10px;
+	margin-bottom: 20px;
+}
+
+.jumbotron {
+	background: #c2e2f9;
 }

@@ -1,11 +1,11 @@
 // This is the array that holds the gif topics
-var topics = ["Archer", "Birdman", "Dogs"];
+var topics = ["Archer", "Harvey Birdman", "Cowboy Bebop"];
 
 // This function will render the display every time a button is added
 function displayGifInfo() {
 	// This grabs the info in the button
 	var topic = $(this).attr("data-name");
-
+	$("#gifs").empty();
 	// This is the API url and key
 	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=dc6zaTOxFJmzC&limit=10";
 
@@ -29,6 +29,8 @@ function displayGifInfo() {
     	
     		var gifDiv = $("<div class='gif'>");
 
+    		// This gives the initial attribute to the image
+    		gifDiv.attr("data-state", "still");
 
     			// This stores the rating
     		var p = $("<p>").text("Rating: " + results[i].rating);
@@ -41,8 +43,7 @@ function displayGifInfo() {
     		// This gives the give a data element with the still url
     		gifImage.attr("data-still", results[i].images.fixed_height_still.url);
 
-    		// This gives the initial attribute to the image
-    		gifImage.attr("data-state", "still");
+
     		// This gives a data attribute for the animated image
     		gifImage.attr("data-animate", results[i].images.fixed_height.url);
     		// This appends the rating and the gif
@@ -96,7 +97,7 @@ $("#add-gif").on("click", function(event) {
 	var gifness = $("#gif-input").val().trim();
 
 	// This empties the gifs
-	$("#gifs").empty();
+	
 
 
 	// Adds the input to the array
