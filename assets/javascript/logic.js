@@ -104,9 +104,9 @@ $(document).on("click", ".giphy", displayGifInfo);
 renderButtons();
 
 // This animates the gifs when they are clicked
-$(".gif").on("click", function() {
-		console.log("click");
+$(document).on("click", ".gif" function() {
 	// creates a var for the state of the gif
+	console.log("click")
 	var state = $(this).attr("data-state");
 
 	// This sereies of if/else statmes changes the gif to animate depending on the current state when clicked
